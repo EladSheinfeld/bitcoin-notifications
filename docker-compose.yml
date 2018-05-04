@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+    mongodb:
+        image: mongo:latest
+        container_name: "mongodb"
+        environment:
+          - MONGO_DATA_DIR=/data/db
+          - MONGO_LOG_DIR=/dev/null
+          - MONGODB_USER="bitcoin"
+          - MONGODB_PASS="bitcoinPass",
+          - MONGODB_DBNAME="bitcoin"
+        volumes:
+          - ./data/db:/data/db
+        ports:
+            - 27017:27017
+        command: mongod --smallfiles --logpath=/dev/null # --quiet
+
+    bitcoin-backend:
+      build: backend
+      command: node ./app.js
+      ports:
+        - "17000:7000"
+
+    scheduler:
+        build: scheduler
+        command: node ./app.js
+        container_name: "scheduler"
+        links:
+            - mongodb
+            - bitcoin-backend
+        ports:
+            - "18000:8000"
+    web:
+      build: web
+      command: npm run dev
+      container_name: "web"
+      environment:
+        - NODE_ENV=development
+      links:
+        - mongodb
+        - bitcoin-backend
+        - scheduler
+      ports:
+          - "13000:3000"

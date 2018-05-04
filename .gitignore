@@ -1,0 +1,7 @@
+.DS_Store
+.jshintrc
+*/dist/
+*/npm-debug.log
+
+*/node_modules/
+data/
