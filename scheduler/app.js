@@ -9,7 +9,6 @@ async function run() {
   const agenda = new Agenda().processEvery('one minute').mongo(db, 'jobs');
 
   agenda.define('pull_price', (job, done) => {
-    console.log(new Date().getTime() + ' - Start pull price');
     request('http://api.coindesk.com/v1/bpi/currentprice/USD.json', function(error, response, body){
       if (response.statusCode === 200) {
         var jsonBody = JSON.parse(body);
