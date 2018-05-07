@@ -1,25 +1,19 @@
-wont# Bitcoin Notifications
+# Bitcoin Notifications
 
-This project isCreate an application that provides notifications for bitcoin price changes. Please choose one of the following:
-* A single page application web application
-* A traditional web application
-* A service with a REST interface
-  - A service with a GraphQL interface
+This is my submission for the bitcoin tracking exercise.
 
-Every time the price of bitcoin passes a threshold price in a given direction, a notification will be
-sent. For web pages, this notification will be in the web page itself. For APIs it must be via email.
-For example, if the price of Bitcoin goes from $1 to $2 and the threshold is set for $2,
-notifications will be sent for “Up” and “Up or Down” alerts. Please choose how to present them.
-Alerts need to persist when a user closes and reopens the web application or restarts the API. If
-multiple users access the application, they should see the same set of alerts.
+The project structure is as follows:
+* scheduler - scheduled task that fetch the current bitcoin price every second
+* backend - server-side logic, such as notification and configuration management
+* web - web client
 
+The project utilize Docker for isolating the different components. Communication between components is done via web socket.
 
-High level requirements:
-* Create a backend service that monitor changes in bitcoin prices (https://api.cryptonator.com/api/full/btc-usd)
-* Persist all of the changes
-* In case the change cross a specific threshold, send a notification with the direction of the change
-
-In order to save time, the project won't atone to the following:
-* User specific session/configuration
-  - All of the users will receive the same notification
-* Actual scale (should prepare a scale-plan)
+Improvements and incomplete items:
+* Web container configuration
+* Web client implementation
+* Better "domain" design
+* Logging
+* Testing
+* Kafka for backend communication
+* Better separation between the components and mongo
