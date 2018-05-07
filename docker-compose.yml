@@ -33,7 +33,6 @@ services:
             - "18000:8000"
     web:
       build: web
-      command: npm run dev
       container_name: "web"
       environment:
         - NODE_ENV=development
@@ -43,3 +42,18 @@ services:
         - scheduler
       ports:
           - "13000:3000"
+#      volumes:
+#        - .:/usr/src/app/:rw
+
+      command: >
+        sh -c '
+          if test -d node_modules;
+          then
+            echo node_modules_exists ;
+          else
+            cp -a /tmp/node_modules /usr/src/website;
+          cd ./web;
+          fi &&
+          npm install &&
+          /usr/local/bin/node ./src/main.js
+        '

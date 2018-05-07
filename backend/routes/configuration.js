@@ -5,6 +5,8 @@ module.exports = function (socket) {
     notificationRepo.addConfiguration((err, conf) => {
       if(err) {
         console.error(err.message);
+      } else {
+        socket.broadcast.emit('configurationUpodated', conf);
       }
     });
   });
