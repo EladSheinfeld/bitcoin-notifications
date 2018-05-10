@@ -1,4 +1,4 @@
-const notificationRepo = require('../repository/NotificationConfigurationRepository')
+const notificationRepo = require('../repository').NotificationConfigurationRepository
 
 module.exports = function (socket) {
   socket.on('changeConfiguration', function (conf) {

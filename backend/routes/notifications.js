@@ -1,5 +1,5 @@
 const entities = require('../entities/AlertDirection')
-const notificationRepo = require('../repository/NotificationConfigurationRepository')
+const notificationRepo = require('../repository').NotificationConfigurationRepository
 
 module.exports = function (socket) {
   socket.on('priceUpdated', function (data) {

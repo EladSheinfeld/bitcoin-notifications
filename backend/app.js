@@ -12,6 +12,8 @@ app.set('port', process.env.PORT || 7000);
 
 app.get('/', routes.index)
 
+app.get('/prices', require('./routes/prices'))
+
 app.get('/config', (req, res) => {
   notificationConfigurationRepository.fetchConfiguration((err, conf) => {
     res.send(JSON.stringify(conf));

@@ -41,19 +41,15 @@ services:
         - bitcoin-backend
         - scheduler
       ports:
-          - "13000:3000"
-#      volumes:
-#        - .:/usr/src/app/:rw
-
+          - "14000:4000"
       command: >
         sh -c '
           if test -d node_modules;
           then
-            echo node_modules_exists ;
+            echo node_modules_exists;
           else
-            cp -a /tmp/node_modules /usr/src/website;
-          cd ./web;
+            cp -a /tmp/node_modules /usr/src/app;
+
           fi &&
-          npm install &&
-          /usr/local/bin/node ./src/main.js
+          npm run dev
         '
