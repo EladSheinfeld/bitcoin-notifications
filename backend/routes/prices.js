@@ -1,7 +1,7 @@
-const notificationRepo = require('../repository').NotificationConfigurationRepository
+const PriceRepository = require('../repository').PriceRepository;
 
 module.exports = function(req, res){
-  notificationRepo.fetch(10, (err, prices) => {
+  PriceRepository.fetch(10, (err, prices) => {
     if(err) {
       console.error(err.message);
     } else {
