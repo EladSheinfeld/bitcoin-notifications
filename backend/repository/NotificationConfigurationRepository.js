@@ -32,7 +32,6 @@ class NotificationConfigurationRepository {
         return callback(new Error('Error connecting to mongo', err), null);
       }
       const db = client.db('bitcoin');
-
       db.collection("notificationConfiguration").insertOne({
         price: configuration.price,
         alertDirection: configuration.alertDirection.toString(),
@@ -43,8 +42,7 @@ class NotificationConfigurationRepository {
         }
 
         client.close();
-        var newConfig = new NotificationConfiguration(result.ops.price, new AlertDirection(result.ops.alertDirection));
-        return callback(null, newConfig);
+        return callback(null, true);
       });
     });
   }

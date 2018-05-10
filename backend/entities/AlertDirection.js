@@ -4,7 +4,7 @@ class  AlertDirection {
   }
 
   toString() {
-    return `Color.${this.name}`;
+    return `${this.direction}`;
   }
 }
 
